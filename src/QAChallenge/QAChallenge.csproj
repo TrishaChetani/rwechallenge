@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-QAChallenge-A1CEAF31-2E8B-4D0B-8B2A-689483B3FA68</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -27,5 +28,11 @@
 
     <ItemGroup>
         <ProjectReference Include="..\QAChallenge.RabbitMQ\QAChallenge.RabbitMQ.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 </Project>
