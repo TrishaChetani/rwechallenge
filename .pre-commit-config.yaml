@@ -1,0 +1,12 @@
+repos:
+  - repo: local
+    hooks:
+      #Use dotnet format already installed on your machine
+      -   id: dotnet-format
+          name: dotnet-format
+          language: system
+          entry: dotnet format backend/OCPT.sln
+          types_or: ["c#", "vb"]
+          args:
+            - --verify-no-changes
+            - --verbosity=detailed

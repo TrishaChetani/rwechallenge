@@ -1,0 +1,69 @@
+asyncapi: 2.5.0
+info:
+  title: RabbitMQ API
+  version: 1.0.0
+servers:
+  docker:
+    url: amqp://localhost:5672
+    protocol: amqp
+    description: Local Docker test broker
+    security:
+      - user-password: [ ]
+defaultContentType: application/json
+channels:
+  "turbine.updates":
+    description: Topic on which upstream service publishes events
+    subscribe:
+      summary: Inform downstream system about updates
+      operationId: onTurbineUpdate
+      message:
+        $ref: '#/components/messages/TurbineUpdateInput'
+  "turbine.updates.fullDetails":
+    description: Topic on which demo notifies downstream consumers
+    publish:
+      summary: Inform downstream consumers about turbine update
+      operationId: onNotifyUpdate
+      message:
+        $ref: '#/components/messages/TurbineUpdateOutput'
+components:
+  messages:
+    TurbineUpdateInput:
+      name: TurbineUpdateInput
+      title: Notification about update
+      summary: Notification about update
+      payload:
+        $ref: '#/components/schemas/TurbineUpdateInputEntity'
+    TurbineUpdateOutput:
+      name: TurbineUpdateOutput
+      title: Notification about update
+      summary: Notification about update
+      payload:
+        $ref: '#/components/schemas/TurbineUpdateOutputEntity'
+  schemas:
+    TurbineUpdateInputEntity:
+      type: object
+      properties:
+        Id:
+          type: integer
+          minimum: 1
+    TurbineUpdateOutputEntity:
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+          minimum: 1
+        Name:
+          type: string
+        MaxCapacity:
+          type: integer
+          minimum: 1
+        LastModifiedAt:
+          type: string
+          format: date-time
+        CreatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    user-password:
+      type: userPassword

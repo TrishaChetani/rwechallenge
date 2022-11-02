@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-QAChallenge-A1CEAF31-2E8B-4D0B-8B2A-689483B3FA68</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <OpenApiReference Include="../../api/master-data.yaml">
+            <ClassName>MasterDataServiceClient</ClassName>
+            <Namespace>QAChallenge.MasterData</Namespace>
+            <Options>/GenerateClientInterfaces:true /InjectHttpClient:true /OperationGenerationMode:MultipleClientsFromFirstTagAndOperationId /GenerateOptionalParameters:true /GenerateOptionalPropertiesAsNullable:true</Options>
+        </OpenApiReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+        <PackageReference Include="NSwag.ApiDescription.Client" Version="13.16.1" />
+        <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+        <PackageReference Include="Serilog" Version="2.12.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+        <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\QAChallenge.RabbitMQ\QAChallenge.RabbitMQ.csproj" />
+    </ItemGroup>
+</Project>

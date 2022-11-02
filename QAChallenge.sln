@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAChallenge", "src\QAChallenge\QAChallenge.csproj", "{ADD5A975-C814-46E2-AF49-83BA63B5E9B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A785A5CB-DF76-44EE-9D38-132EA9FC6F48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAChallenge.RabbitMQ", "src\QAChallenge.RabbitMQ\QAChallenge.RabbitMQ.csproj", "{9C848BBF-AAE2-479A-9116-C05781009535}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADD5A975-C814-46E2-AF49-83BA63B5E9B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD5A975-C814-46E2-AF49-83BA63B5E9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD5A975-C814-46E2-AF49-83BA63B5E9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD5A975-C814-46E2-AF49-83BA63B5E9B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C848BBF-AAE2-479A-9116-C05781009535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C848BBF-AAE2-479A-9116-C05781009535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C848BBF-AAE2-479A-9116-C05781009535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C848BBF-AAE2-479A-9116-C05781009535}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ADD5A975-C814-46E2-AF49-83BA63B5E9B9} = {A785A5CB-DF76-44EE-9D38-132EA9FC6F48}
+		{9C848BBF-AAE2-479A-9116-C05781009535} = {A785A5CB-DF76-44EE-9D38-132EA9FC6F48}
+	EndGlobalSection
+EndGlobal
