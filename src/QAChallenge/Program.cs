@@ -33,20 +33,12 @@ builder.ConfigureServices((context, services) =>
 
     services.ConfigureRabbitMqConnectionConfigs(context.Configuration);
 
-    var consumerSpec = context.Configuration
-        .GetSection("RabbitMq:Consumers:Upstream")
-        .Get<ConsumerRegistrationSpec>();
-
-    var publisherSpec = context.Configuration
-        .GetSection("RabbitMq:Publishers:Downstream")
-        .Get<PublisherRegistrationSpec>();
-
     services.AddMessageConsumer<TurbineUpdateInput>()
-        .WithRegistrationSpec(consumerSpec)
+        .WithRegistrationSpec(ConsumerRegistrationSpec.FromConfig(context.Configuration, "RabbitMq:Consumers:Upstream"))
         .RegisterJsonConsumer<TurbineUpdateConsumer>(messageTypeInfo: MessagesJsonContext.Default.TurbineUpdateInput);
 
     services.AddMessagePublisher<TurbineUpdateOutput>()
-        .WithRegistrationSpec(publisherSpec)
+        .WithRegistrationSpec(PublisherRegistrationSpec.FromConfig(context.Configuration, "RabbitMq:Publishers:Downstream"))
         .RegisterJsonPublisher(messageTypeInfo: MessagesJsonContext.Default.TurbineUpdateOutput);
 });
 

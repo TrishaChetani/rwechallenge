@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 
 namespace QAChallenge.RabbitMQ.Models;
@@ -21,4 +22,6 @@ public record PublisherRegistrationSpec
 {
     public PublishingAddress Address { get; init; }
     public string ConnectionReference { get; init; }
+
+    public static PublisherRegistrationSpec FromConfig(IConfiguration config, string sectionName) => config.GetSection(sectionName).Get<PublisherRegistrationSpec>();
 }

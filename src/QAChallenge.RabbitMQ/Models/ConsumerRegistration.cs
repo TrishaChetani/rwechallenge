@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 
 namespace QAChallenge.RabbitMQ.Models;
@@ -80,4 +81,7 @@ public record ConsumerRegistrationSpec()
     public QueueSpec Queue { get; init; }
     public QueueBindingSpec? Binding { get; init; }
     public string ConnectionReference { get; init; }
+
+    public static ConsumerRegistrationSpec FromConfig(IConfiguration config, string sectionName)
+        => config.GetSection(sectionName).Get<ConsumerRegistrationSpec>();
 }
