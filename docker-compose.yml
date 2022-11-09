@@ -1,15 +1,22 @@
-test:
-  build: .
-  links:
-    - rabbitmq
-  command: npm test
-  environment:
-    - AMQP_URL=amqp://guest:guest@rabbitmq//
-    - DEBUG=${DEBUG}
-  volumes:
-    - ./test:/code/test
-    - ./amqp.js:/code/amqp.js
+  version: '3'
+  services:
+    challenge:
+      build:
+        context: .
+        dockerfile: src/QAChallenge/Dockerfile
+      depends_on:
+        - rabbitmq
+      environment:
+        RabbitMQ__Connections__Default__HostName: rabbit
+        RabbitMQ__Connections__Default__Username: guest
+        RabbitMQ__Connections__Default__Password: guest
 
-rabbitmq:
-  image: rabbitmq
+    rabbitmq:
+      image: docker.io/rabbitmq:3-management-alpine
+      container_name: rabbit
+      ports:
+        - "15672:15672"
+      environment:
+        RABBITMQ_DEFAULT_USER: guest
+        RABBITMQ_DEFAULT_PASS: guest
 

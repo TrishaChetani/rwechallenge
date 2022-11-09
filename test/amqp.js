@@ -5,7 +5,7 @@ require('chai').use(require('dirty-chai'));
 const AMQP = require('../amqp');
 const config = require('./config');
 
-describe('AMQP', function () {
+describe('AMQP test', function () {
   describe('#constructor', function () {
     it('should throw with empty constructor', function () {
       expect(() => new AMQP()).to.throw('simple-amqplib: Invalid config');
@@ -23,7 +23,7 @@ describe('AMQP', function () {
   describe('#connect', function () {
     it('should should fail to connect to bad endpoint', function (done) {
       const amqp = new AMQP({
-        url: 'amqp://guest:guest@localhost:6767',
+        url: 'amqp://guest:guest@localhost',
         exchange: 'FOO'
       });
       amqp.connect().catch(function (err) {
@@ -90,13 +90,15 @@ describe('AMQP', function () {
   describe('#publish', function () {
     it('should resolve successfully', async function () {
       const amqp = new AMQP(config.good);
+      console.log('test§§§§§§§§§§§§');
       await amqp.connect();
-      await expect(amqp.publish('myqueue', 'test', {})).to.eventually.be.fulfilled();
+      console.log('test$$$$$$$$$$$$$$$$');
+      await expect(amqp.publish('turbine-updates', 'test', {})).to.eventually.be.fulfilled();
     });
     it('should accept objects', async function () {
       const amqp = new AMQP(config.good);
       await amqp.connect();
-      await expect(amqp.publish('myqueue', { woo: 'test' }, {})).to.eventually.be.fulfilled();
+      await expect(amqp.publish('turbine-updates', { woo: 'test' }, {})).to.eventually.be.fulfilled();
     });
   });
   describe('#consume', async function () {
