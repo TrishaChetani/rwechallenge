@@ -10,6 +10,17 @@ graph TD
     turbineUpdate[Incoming update event] -->|Turbine updated| fetchTurbineState[Fetch updated turbine data]
     fetchTurbineState -->|Turbine data| publishNewState[Publish new turbine state]
 ```
+
+or as sequence diagram:
+
+```mermaid
+sequenceDiagram
+    UpstreamSystem->>Notifier: Incoming update event
+    Notifier->>MasterDataSystem: Fetch current turbine state
+    MasterDataSystem-->>Notifier: Current turbine state
+    Notifier->>DownstreamSystems: New turbine state
+    Note right of DownstreamSystems: fire and forget via RabbitMQ
+```
  
 Currently there are no tests in place.
 Make sure that the described data flow actually works and fix probably existing bugs.
